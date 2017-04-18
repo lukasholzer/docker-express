@@ -5,8 +5,8 @@ This is a bootstrap repository for a basic setup with [Docker](https://docs.dock
 
 ## Requirements
 
-- [Docker](http://docker.com)
-- [Docker Compose](http://docs.docker.com/compose/)
+- [Docker](http://docker.com) Download the app for: [Mac OSX](https://download.docker.com/mac/stable/Docker.dmg) or [Windows 10 App](https://download.docker.com/win/stable/InstallDocker.msi)
+- [Docker Compose](http://docs.docker.com/compose/) installation with [homebrew](https://brew.sh/index_de.html) `brew install docker-compose`
 
 
 

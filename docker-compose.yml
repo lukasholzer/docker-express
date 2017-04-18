@@ -1,0 +1,26 @@
+version: '3'
+ 
+services:
+  reverseproxy:
+    build: nginx
+    image: nginx-server
+    container_name: nginx-server-container
+    ports:
+      - 8080:8080
+    restart: always
+
+  express:
+    depends_on:
+      - reverseproxy
+    build:
+      context: express
+      args:
+       - dir=/opt/example.com/
+       - port=3000
+    image: express-server
+    container_name: express-server-container
+    volumes:
+      - /opt/example.com/
+
+volumes:
+  app:

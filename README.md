@@ -18,6 +18,7 @@ A short list of useful commands for this Bootstrapping
 
 - run: `docker-compose up`
 - run in background: `docker-compose up -d`
+- run and build: `docker-compose up --build`
 - build: `docker-compose build`
 - shutdown: `docker-compose down`
 - list all images: `docker images -a`

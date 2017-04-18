@@ -6,31 +6,26 @@ MAINTAINER Lukas Holzer <office@lukasholzer.com>
 #--------------
 ARG dir
 ARG port
+ARG env
 
 #--------------
 # Variables
 #--------------
 ENV HOME_DIR $dir
 ENV PORT $port
+ENV BUILDVAR $env
 
-RUN ls
-RUN mkdir -p $HOME_DIR
-RUN ls
+
+# use changes to package.json to force Docker not to use the cache
+# when we change our application's nodejs dependencies:
+COPY package.json /tmp/package.json
+RUN cd /tmp && yarn
+RUN mkdir -p $HOME_DIR && cp -a /tmp/node_modules $HOME_DIR/
 
 WORKDIR $HOME_DIR
-
-
-COPY package.json $HOME_DIR
-
-
-# Install dependecies
-RUN yarn
-
-# Get all the code needed to run the app
 COPY . $HOME_DIR
 
 # Expose port 3000 for NGINX
 EXPOSE $PORT
 
-# Startup command
 CMD yarn start

@@ -6,8 +6,11 @@ services:
     image: nginx-server
     container_name: nginx-server-container
     ports:
-      - 8080:8080
+      # port to access: internal port
+      - 2345:8080
     restart: always
+    networks:
+      - backend
 
   express:
     depends_on:
@@ -17,7 +20,18 @@ services:
       args:
        - dir=/opt/example.com/
        - port=3000
+       - env=dev
     image: express-server
     container_name: express-server-container
     volumes:
-      - /opt/example.com/
+      - ./express/src:/opt/example.com/src
+      - ./express/dist:/opt/example.com/dist
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: "bridge"
+volumes:
+  express:
+    driver: 'local'

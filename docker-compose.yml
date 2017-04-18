@@ -21,6 +21,3 @@ services:
     container_name: express-server-container
     volumes:
       - /opt/example.com/
-
-volumes:
-  app:
